@@ -1,0 +1,56 @@
+/* General styles */
+form {
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+    width: 100%; /* Adjust width as needed */
+  }
+  
+  h2 {
+    margin-bottom: 5px;
+  }
+  
+  /* Radio buttons */
+  .radio-container {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+  }
+  
+  input[type="radio"] {
+    /* Adjust size and styling as needed */
+  }
+  
+  /* Select menus */
+  select {
+    padding: 5px;
+    border: 1px solid #ccc;
+    border-radius: 4px;
+  }
+  
+  /* Text input and textarea */
+  input[type="text"], textarea {
+    padding: 5px;
+    border: 1px solid #ccc;
+    border-radius: 4px;
+    width: 100%; /* Adjust width as needed */
+  }
+  
+  /* Buttons */
+  button {
+    padding: 10px 20px;
+    border: none;
+    border-radius: 4px;
+    cursor: pointer;
+  }
+  
+  .raise-ticket {  /* Style for Raise Ticket button */
+    background-color: #4CAF50; /* Green */
+    color: white;
+  }
+  
+  .cancel {  /* Style for Cancel button */
+    background-color: #f0ad4e; /* Orange */
+    color: white;
+  }
+  

@@ -1,16 +1,19 @@
 import React, { useRef, useState } from 'react';
 import { useScreenshot } from 'use-react-screenshot';
+import { useNavigate } from 'react-router-dom';
 import Draggable from 'react-draggable';
-import CanvasDraw from 'react-canvas-draw'; 
+import CanvasDraw from 'react-canvas-draw';
 
 const OptionsMenu = ({ onClose }) => {
   const ref = useRef(null);
+  const navigate = useNavigate();
   const [image, takeScreenshot] = useScreenshot();
   const [fullscreenImage, setFullscreenImage] = useState(null);
   const [showRetakeButton, setShowRetakeButton] = useState(false);
   const [showEditButton, setShowEditButton] = useState(false);
-  const [isDrawing, setIsDrawing] = useState(false); // State to control drawing mode
-  const [zoomLevel, setZoomLevel] = useState(1); // State to control zoom level
+  const [showSaveButton, setShowSaveButton] = useState(false);
+  const [isDrawing, setIsDrawing] = useState(false);
+  const [zoomLevel, setZoomLevel] = useState(1);
 
   const handleFullscreen = () => {
     takeScreenshot(ref.current)
@@ -18,6 +21,7 @@ const OptionsMenu = ({ onClose }) => {
         setFullscreenImage(img);
         setShowRetakeButton(true);
         setShowEditButton(true);
+        setShowSaveButton(true);
       })
       .catch((err) => console.error('Error taking screenshot:', err));
   };
@@ -26,6 +30,7 @@ const OptionsMenu = ({ onClose }) => {
     setFullscreenImage(null);
     setShowRetakeButton(false);
     setShowEditButton(false);
+    setShowSaveButton(false);
   };
 
   const handleCloseFullscreen = () => {
@@ -35,23 +40,27 @@ const OptionsMenu = ({ onClose }) => {
   };
 
   const handleEdit = () => {
-    setIsDrawing(true); // Activate drawing mode
+    setIsDrawing(true);
   };
 
   const handleErase = () => {
-    ref.current.clear(); // Clear the drawing canvas
+    ref.current.clear();
   };
 
   const handleZoomIn = () => {
-    setZoomLevel(prevZoom => prevZoom + 0.1); // Increase zoom level by 0.1
+    setZoomLevel(prevZoom => prevZoom + 0.1);
   };
 
   const handleZoomOut = () => {
-    setZoomLevel(prevZoom => Math.max(prevZoom - 0.1, 0.1)); // Decrease zoom level by 0.1, ensuring it doesn't go below 0.1
+    setZoomLevel(prevZoom => Math.max(prevZoom - 0.1, 0.1));
   };
 
   const handleDrawingFinish = () => {
-    setIsDrawing(false); // Deactivate drawing mode
+    setIsDrawing(false);
+  };
+
+  const handleSave = () => {
+    navigate('/issueform');
   };
 
   return (
@@ -104,12 +113,14 @@ const OptionsMenu = ({ onClose }) => {
               <button onClick={handleErase}>Erase</button>
               <button onClick={handleZoomIn}>Zoom In</button>
               <button onClick={handleZoomOut}>Zoom Out</button>
+              {showSaveButton && (
+                <button onClick={handleSave}>Save</button>
+              )}
             </div>
           )}
         </div>
       )}
       <div ref={ref}>
-        {/* Your content here */}
         <h1>Options Menu</h1>
         <p>This is the content of the options menu.</p>
       </div>
@@ -118,6 +129,9 @@ const OptionsMenu = ({ onClose }) => {
 };
 
 export default OptionsMenu;
+
+
+
 
 
 
