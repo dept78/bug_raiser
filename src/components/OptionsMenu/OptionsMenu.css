@@ -1,0 +1,32 @@
+/* optionsMenu.css */
+.options-menu {
+  display: flex;
+  gap: 10px;
+  background-color: #f0f0f0;
+  border-radius: 5px;
+  padding: 5px;
+}
+
+.options-menu button {
+  background-color: #fff;
+  border: none;
+  border-radius: 5px;
+  padding: 5px 10px;
+  cursor: pointer;
+}
+
+.options-menu button:hover {
+  background-color: #e0e0e0;
+}
+.fullscreen-image-container {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+}
+
+.fullscreen-image {
+  max-width: 100%;
+  max-height: 100%;
+}
+
